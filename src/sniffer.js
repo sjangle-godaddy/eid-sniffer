@@ -136,6 +136,8 @@
 
   const TOAST_MAX = 6;
   const TOAST_TTL = 6000;
+  const TOAST_GLASS_OPACITY = 0.06;
+
   const toast = {
     host: null,
     root: null,
@@ -213,38 +215,38 @@
        on the typically light app pages it overlays. */
     .stack.glass .toast {
       background:
-        linear-gradient(135deg, rgba(255,255,255,0.75) 0%, rgba(255,255,255,0.18) 32%, rgba(255,255,255,0.06) 58%),
-        rgba(236, 238, 252, 0.28);
-      backdrop-filter: blur(20px) saturate(180%);
-      -webkit-backdrop-filter: blur(20px) saturate(180%);
-      border: 1px solid rgba(255, 255, 255, 0.65);
+        linear-gradient(135deg, rgba(255,255,255,0.35) 0%, rgba(255,255,255,0.08) 32%, rgba(255,255,255,0.02) 58%),
+        rgba(236, 238, 252, ${TOAST_GLASS_OPACITY});
+      backdrop-filter: blur(10px) saturate(160%);
+      -webkit-backdrop-filter: blur(10px) saturate(160%);
+      border: 1px solid rgba(255, 255, 255, 0.45);
       border-radius: 16px;
       color: #12132e;
       text-shadow: 0 1px 0 rgba(255, 255, 255, 0.35);
       box-shadow:
-        0 12px 34px rgba(0, 0, 0, 0.20),
-        inset 0 1px 1px rgba(255, 255, 255, 0.9),
-        inset 0 -8px 20px rgba(255, 255, 255, 0.18);
+        0 12px 34px rgba(0, 0, 0, 0.12),
+        inset 0 1px 1px rgba(255, 255, 255, 0.45),
+        inset 0 -8px 20px rgba(255, 255, 255, 0.08);
     }
-    .stack.glass .toast:hover { border-color: rgba(255, 255, 255, 0.85); }
+    .stack.glass .toast:hover { border-color: rgba(255, 255, 255, 0.65); }
     .stack.glass .toast .tag {
-      background: rgba(108, 92, 231, 0.92);
+      background: rgba(108, 92, 231, 0.85);
       color: #fff;
       text-shadow: none;
     }
     .stack.glass .toast .eid { color: #0a7a5c; }
     .stack.glass .toast .hint { color: rgba(18, 19, 46, 0.55); }
     .stack.glass .toast .props {
-      background: rgba(255, 255, 255, 0.42);
-      border: 1px solid rgba(255, 255, 255, 0.6);
+      background: rgba(255, 255, 255, 0.22);
+      border: 1px solid rgba(255, 255, 255, 0.4);
       color: #14142b;
       text-shadow: none;
     }
     .stack.glass .toast.copied {
       border-color: #0a7a5c;
       box-shadow:
-        0 12px 34px rgba(0, 0, 0, 0.20),
-        inset 0 1px 1px rgba(255, 255, 255, 0.9),
+        0 12px 34px rgba(0, 0, 0, 0.12),
+        inset 0 1px 1px rgba(255, 255, 255, 0.45),
         0 0 0 1px rgba(10, 122, 92, 0.5);
     }
   `;
