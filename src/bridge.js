@@ -15,8 +15,8 @@
     trackCollect: false,
     trackWeb: true,
     showConsole: true,
-    showToast: false,
-    copyMode: "eidProps",
+    showToast: true,
+    copyMode: "eid",
     theme: "glass",
   };
 
@@ -27,8 +27,8 @@
     trackWeb: bool(stored?.trackWeb, DEFAULTS.trackWeb),
     showConsole: bool(stored?.showConsole, DEFAULTS.showConsole),
     showToast: bool(stored?.showToast, DEFAULTS.showToast),
-    copyMode: stored?.copyMode === "eid" ? "eid" : DEFAULTS.copyMode,
-    theme: stored?.theme === "default" || stored?.theme === "glass" ? stored.theme : DEFAULTS.theme,
+    copyMode: stored?.copyMode === "eidProps" ? "eidProps" : DEFAULTS.copyMode,
+    theme: stored?.theme === "dracula" || stored?.theme === "glass" ? stored.theme : DEFAULTS.theme,
   });
 
   const dispatch = (config) => {

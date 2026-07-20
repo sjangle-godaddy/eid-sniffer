@@ -20,8 +20,8 @@ const DEFAULTS = {
   trackCollect: false,
   trackWeb: true,
   showConsole: true,
-  showToast: false,
-  copyMode: "eidProps",
+  showToast: true,
+  copyMode: "eid",
   theme: "glass",
   whitelist: DEFAULT_WHITELIST,
 };

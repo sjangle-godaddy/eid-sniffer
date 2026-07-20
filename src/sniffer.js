@@ -51,9 +51,9 @@
     trackCollect: false,
     trackWeb: true,
     showConsole: true,
-    showToast: false,
-    copyMode: "eidProps", // "eid" | "eidProps"
-    theme: "glass", // "default" | "glass"
+    showToast: true,
+    copyMode: "eid", // "eid" | "eidProps"
+    theme: "glass", // "glass" | "dracula"
   };
 
   const consoleStyles = {
@@ -451,7 +451,7 @@
     if (typeof next.showConsole === "boolean") config.showConsole = next.showConsole;
     if (typeof next.showToast === "boolean") config.showToast = next.showToast;
     if (next.copyMode === "eid" || next.copyMode === "eidProps") config.copyMode = next.copyMode;
-    if (next.theme === "glass" || next.theme === "default") config.theme = next.theme;
+    if (next.theme === "glass" || next.theme === "dracula") config.theme = next.theme;
     if (toast.stack) toast.stack.className = config.theme === "glass" ? "stack glass" : "stack";
     if (!config.showToast) teardownToasts();
   };

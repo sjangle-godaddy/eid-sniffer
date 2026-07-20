@@ -7,8 +7,8 @@ const DEFAULTS = {
   trackCollect: false,
   trackWeb: true,
   showConsole: true,
-  showToast: false,
-  copyMode: "eidProps",
+  showToast: true,
+  copyMode: "eid",
   theme: "glass",
 };
 
@@ -32,8 +32,8 @@ function render(state) {
   els.styleToast.checked = state.showToast;
   els.copyMode.value = state.copyMode === "eid" ? "eid" : "eidProps";
   els.copyMode.disabled = !state.showToast;
-  els.theme.value = state.theme === "glass" ? "glass" : "default";
-  document.body.classList.toggle("theme-glass", state.theme === "glass");
+  els.theme.value = state.theme === "dracula" ? "dracula" : "glass";
+  document.body.classList.toggle("theme-glass", state.theme !== "dracula");
 
   els.status.textContent = state.active ? "Active" : "Inactive";
   els.status.classList.toggle("status--on", state.active);
@@ -65,7 +65,7 @@ els.styleToast.addEventListener("change", () => {
 els.copyMode.addEventListener("change", () => save({ copyMode: els.copyMode.value }));
 els.theme.addEventListener("change", () => {
   save({ theme: els.theme.value });
-  document.body.classList.toggle("theme-glass", els.theme.value === "glass");
+  document.body.classList.toggle("theme-glass", els.theme.value !== "dracula");
 });
 
 els.openOptions.addEventListener("click", (e) => {
