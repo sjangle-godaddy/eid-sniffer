@@ -4,6 +4,9 @@ A Chrome extension that captures the `eid` and `customProperties` of events fire
 
 It replaces the old workflow of checking the network tab results or pasting a script into DevTools.
 
+<img width="800" height="526" alt="eid_gif_demo" src="https://github.com/user-attachments/assets/bcd1cc11-7195-49a6-a43c-f73983d77367" />
+
+
 ## Install
 
 1. Clone this repo (or download it as a ZIP and unzip).
