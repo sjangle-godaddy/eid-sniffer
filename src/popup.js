@@ -9,6 +9,7 @@ const DEFAULTS = {
   showConsole: true,
   showToast: false,
   copyMode: "eidProps",
+  theme: "glass",
 };
 
 const els = {
@@ -18,6 +19,7 @@ const els = {
   styleConsole: document.getElementById("styleConsole"),
   styleToast: document.getElementById("styleToast"),
   copyMode: document.getElementById("copyMode"),
+  theme: document.getElementById("theme"),
   status: document.getElementById("status"),
   openOptions: document.getElementById("openOptions"),
 };
@@ -30,6 +32,8 @@ function render(state) {
   els.styleToast.checked = state.showToast;
   els.copyMode.value = state.copyMode === "eid" ? "eid" : "eidProps";
   els.copyMode.disabled = !state.showToast;
+  els.theme.value = state.theme === "glass" ? "glass" : "default";
+  document.body.classList.toggle("theme-glass", state.theme === "glass");
 
   els.status.textContent = state.active ? "Active" : "Inactive";
   els.status.classList.toggle("status--on", state.active);
@@ -59,6 +63,10 @@ els.styleToast.addEventListener("change", () => {
   els.copyMode.disabled = !els.styleToast.checked;
 });
 els.copyMode.addEventListener("change", () => save({ copyMode: els.copyMode.value }));
+els.theme.addEventListener("change", () => {
+  save({ theme: els.theme.value });
+  document.body.classList.toggle("theme-glass", els.theme.value === "glass");
+});
 
 els.openOptions.addEventListener("click", (e) => {
   e.preventDefault();

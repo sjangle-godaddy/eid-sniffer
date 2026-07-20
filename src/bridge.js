@@ -17,6 +17,7 @@
     showConsole: true,
     showToast: false,
     copyMode: "eidProps",
+    theme: "glass",
   };
 
   const bool = (v, fallback) => (typeof v === "boolean" ? v : fallback);
@@ -27,6 +28,7 @@
     showConsole: bool(stored?.showConsole, DEFAULTS.showConsole),
     showToast: bool(stored?.showToast, DEFAULTS.showToast),
     copyMode: stored?.copyMode === "eid" ? "eid" : DEFAULTS.copyMode,
+    theme: stored?.theme === "default" || stored?.theme === "glass" ? stored.theme : DEFAULTS.theme,
   });
 
   const dispatch = (config) => {
@@ -39,7 +41,7 @@
 
   const pushCurrent = () => {
     try {
-      chrome.storage.local.get(["trackCollect", "trackWeb", "showConsole", "showToast", "copyMode"], (stored) => {
+      chrome.storage.local.get(["trackCollect", "trackWeb", "showConsole", "showToast", "copyMode", "theme"], (stored) => {
         dispatch(pickConfig(stored));
       });
     } catch (_) {
@@ -64,7 +66,8 @@
         changes.trackWeb ||
         changes.showConsole ||
         changes.showToast ||
-        changes.copyMode
+        changes.copyMode ||
+        changes.theme
       ) {
         pushCurrent();
       }

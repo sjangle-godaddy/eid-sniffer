@@ -53,6 +53,7 @@
     showConsole: true,
     showToast: false,
     copyMode: "eidProps", // "eid" | "eidProps"
+    theme: "glass", // "default" | "glass"
   };
 
   const consoleStyles = {
@@ -205,6 +206,47 @@
       from { transform: translateX(12px); opacity: 0; }
       to   { transform: translateX(0); opacity: 1; }
     }
+
+    /* liquid glass theme — real refractive glass frosted over the live page.
+       The page shows through (backdrop-filter blur), a diagonal specular sheen
+       and a bright rim make it read as glass, and text stays dark for contrast
+       on the typically light app pages it overlays. */
+    .stack.glass .toast {
+      background:
+        linear-gradient(135deg, rgba(255,255,255,0.75) 0%, rgba(255,255,255,0.18) 32%, rgba(255,255,255,0.06) 58%),
+        rgba(236, 238, 252, 0.28);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.65);
+      border-radius: 16px;
+      color: #12132e;
+      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.35);
+      box-shadow:
+        0 12px 34px rgba(0, 0, 0, 0.20),
+        inset 0 1px 1px rgba(255, 255, 255, 0.9),
+        inset 0 -8px 20px rgba(255, 255, 255, 0.18);
+    }
+    .stack.glass .toast:hover { border-color: rgba(255, 255, 255, 0.85); }
+    .stack.glass .toast .tag {
+      background: rgba(108, 92, 231, 0.92);
+      color: #fff;
+      text-shadow: none;
+    }
+    .stack.glass .toast .eid { color: #0a7a5c; }
+    .stack.glass .toast .hint { color: rgba(18, 19, 46, 0.55); }
+    .stack.glass .toast .props {
+      background: rgba(255, 255, 255, 0.42);
+      border: 1px solid rgba(255, 255, 255, 0.6);
+      color: #14142b;
+      text-shadow: none;
+    }
+    .stack.glass .toast.copied {
+      border-color: #0a7a5c;
+      box-shadow:
+        0 12px 34px rgba(0, 0, 0, 0.20),
+        inset 0 1px 1px rgba(255, 255, 255, 0.9),
+        0 0 0 1px rgba(10, 122, 92, 0.5);
+    }
   `;
 
   const ensureToastRoot = () => {
@@ -215,7 +257,7 @@
     const style = document.createElement("style");
     style.textContent = TOAST_CSS;
     const stack = document.createElement("div");
-    stack.className = "stack";
+    stack.className = config.theme === "glass" ? "stack glass" : "stack";
     root.appendChild(style);
     root.appendChild(stack);
     (document.body || document.documentElement).appendChild(host);
@@ -407,6 +449,8 @@
     if (typeof next.showConsole === "boolean") config.showConsole = next.showConsole;
     if (typeof next.showToast === "boolean") config.showToast = next.showToast;
     if (next.copyMode === "eid" || next.copyMode === "eidProps") config.copyMode = next.copyMode;
+    if (next.theme === "glass" || next.theme === "default") config.theme = next.theme;
+    if (toast.stack) toast.stack.className = config.theme === "glass" ? "stack glass" : "stack";
     if (!config.showToast) teardownToasts();
   };
 

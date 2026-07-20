@@ -22,6 +22,7 @@ const DEFAULTS = {
   showConsole: true,
   showToast: false,
   copyMode: "eidProps",
+  theme: "glass",
   whitelist: DEFAULT_WHITELIST,
 };
 
