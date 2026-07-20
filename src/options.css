@@ -1,0 +1,158 @@
+:root {
+  --accent: #6c5ce7;
+  --accent-soft: #a29bfe;
+  --danger: #e17055;
+  --bg: #1e1e2e;
+  --panel: #262639;
+  --text: #e6e6ef;
+  --muted: #9a9ab0;
+  --line: #35354d;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 14px;
+}
+
+.wrap {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 32px 24px;
+}
+
+h1 {
+  font-size: 20px;
+  margin: 0 0 8px;
+}
+
+.lead {
+  color: var(--muted);
+  line-height: 1.5;
+  margin: 0 0 20px;
+}
+
+.lead a {
+  color: var(--accent-soft);
+}
+
+.list {
+  list-style: none;
+  margin: 0 0 16px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 10px 12px;
+}
+
+.item code {
+  font-size: 13px;
+  color: var(--accent-soft);
+  word-break: break-all;
+}
+
+.item .default-tag {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+  margin-left: 8px;
+}
+
+.item button {
+  flex: none;
+  background: transparent;
+  border: 1px solid var(--line);
+  color: var(--danger);
+  border-radius: 6px;
+  padding: 4px 10px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.item button:hover {
+  border-color: var(--danger);
+}
+
+.add {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.add input {
+  flex: 1;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 10px 12px;
+  color: var(--text);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 13px;
+}
+
+.add input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.add button {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0 18px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.add button:hover {
+  background: var(--accent-soft);
+}
+
+.msg {
+  min-height: 18px;
+  margin: 0 0 20px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.msg.error {
+  color: var(--danger);
+}
+
+.msg.ok {
+  color: #00b894;
+}
+
+.reset {
+  background: transparent;
+  border: 1px solid var(--line);
+  color: var(--muted);
+  border-radius: 8px;
+  padding: 8px 14px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.reset:hover {
+  border-color: var(--accent-soft);
+  color: var(--text);
+}

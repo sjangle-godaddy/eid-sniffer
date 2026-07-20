@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="options.css" />
+    <title>EID Sniffer — Options</title>
+  </head>
+  <body>
+    <main class="wrap">
+      <h1>EID Sniffer — Domain whitelist</h1>
+      <p class="lead">
+        When the sniffer is active it auto-injects on pages matching these
+        <a href="https://developer.chrome.com/docs/extensions/develop/concepts/match-patterns" target="_blank" rel="noreferrer">match patterns</a>.
+        Adding a custom domain will prompt for permission to run on it.
+      </p>
+
+      <ul id="list" class="list"></ul>
+
+      <form id="addForm" class="add">
+        <input
+          id="patternInput"
+          type="text"
+          placeholder="*://*.example.com/*"
+          spellcheck="false"
+          autocomplete="off"
+        />
+        <button type="submit">Add</button>
+      </form>
+      <p id="msg" class="msg" role="status"></p>
+
+      <button id="reset" class="reset" type="button">Reset to defaults</button>
+    </main>
+
+    <script src="options.js"></script>
+  </body>
+</html>

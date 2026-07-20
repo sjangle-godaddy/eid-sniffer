@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="popup.css" />
+    <title>EID Sniffer</title>
+  </head>
+  <body>
+    <header class="header">
+      <span class="logo">EID</span>
+      <div class="title">
+        <h1>EID Sniffer</h1>
+        <p id="status" class="status status--off">Inactive</p>
+      </div>
+    </header>
+
+    <section class="row row--main">
+      <label class="switch">
+        <input type="checkbox" id="active" />
+        <span class="slider"></span>
+      </label>
+      <div class="row-label">
+        <strong>Activate</strong>
+        <small>Auto-inject on whitelisted domains</small>
+      </div>
+    </section>
+
+    <section class="group">
+      <h2 class="group-title">Track</h2>
+      <label class="check">
+        <input type="checkbox" id="trackCollect" />
+        <span><code>/csp/collect</code></span>
+      </label>
+      <label class="check">
+        <input type="checkbox" id="trackWeb" />
+        <span><code>/eventbus/web</code></span>
+      </label>
+    </section>
+
+    <section class="group">
+      <h2 class="group-title">Output style</h2>
+      <label class="check">
+        <input type="checkbox" id="styleConsole" />
+        <span>Console</span>
+      </label>
+      <label class="check">
+        <input type="checkbox" id="styleToast" />
+        <span>On-page toast</span>
+      </label>
+    </section>
+
+    <section class="group">
+      <h2 class="group-title">Click to copy should copy</h2>
+      <select id="copyMode" class="select">
+        <option value="eid">EID only</option>
+        <option value="eidProps">EID with custom properties</option>
+      </select>
+    </section>
+
+    <footer class="footer">
+      <a id="openOptions" href="#">Edit domain whitelist</a>
+    </footer>
+
+    <script src="popup.js"></script>
+  </body>
+</html>
