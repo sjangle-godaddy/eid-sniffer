@@ -4,6 +4,9 @@ A Chrome extension that captures the `eid` and `customProperties` of events fire
 
 It replaces the old workflow of checking the network tab results or pasting a script into DevTools.
 
+Features:
+- Shows EID with custom properties as toast notification as well as logs to console.
+
 <img width="800" height="605" alt="eid_sniffer_demo" src="https://github.com/user-attachments/assets/795177d9-322f-4fa5-8250-5e7a8959ba15" />
 
 
