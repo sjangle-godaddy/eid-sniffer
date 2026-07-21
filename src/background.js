@@ -21,6 +21,7 @@ const DEFAULTS = {
   trackWeb: true,
   showConsole: true,
   showToast: true,
+  popupTimeout: 6,
   copyMode: "eid",
   theme: "glass",
   whitelist: DEFAULT_WHITELIST,

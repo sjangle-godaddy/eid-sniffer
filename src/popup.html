@@ -22,7 +22,7 @@
       </label>
       <div class="row-label">
         <strong>Activate</strong>
-        <small>Auto-inject on whitelisted domains</small>
+        <small>Auto-start on whitelisted domains</small>
       </div>
     </section>
 
@@ -51,24 +51,42 @@
     </section>
 
     <section class="group">
-      <h2 class="group-title">Click to copy should copy</h2>
-      <select id="copyMode" class="select">
-        <option value="eid">EID only</option>
-        <option value="eidProps">EID with custom properties</option>
-      </select>
-    </section>
+      <h2 class="group-title">Options</h2>
 
-    <section class="group">
-      <h2 class="group-title">Theme</h2>
-      <select id="theme" class="select">
-        <option value="glass">Glass</option>
-        <option value="dracula">Dracula</option>
-      </select>
-    </section>
+      <div class="option">
+        <label for="popupTimeout">Popup Timeout</label>
+        <select id="popupTimeout" class="select">
+          <option value="3">3</option>
+          <option value="6">6</option>
+          <option value="8">8</option>
+          <option value="10">10</option>
+          <option value="15">15</option>
+          <option value="20">20</option>
+          <option value="30">30</option>
+        </select>
+      </div>
 
-    <footer class="footer">
-      <a id="openOptions" href="#">Edit domain whitelist</a>
-    </footer>
+      <div class="option">
+        <label for="copyMode">Copy Behaviour</label>
+        <select id="copyMode" class="select">
+          <option value="eid">EID only</option>
+          <option value="eidProps">EID with customProperty</option>
+        </select>
+      </div>
+
+      <div class="option">
+        <label for="theme">Theme</label>
+        <select id="theme" class="select">
+          <option value="glass">Glass</option>
+          <option value="dracula">Dracula</option>
+        </select>
+      </div>
+
+      <div class="option">
+        <span class="option-label">Domain Whitelist</span>
+        <a id="openOptions" class="option-action" href="#">Add / Remove</a>
+      </div>
+    </section>
 
     <script src="popup.js"></script>
   </body>

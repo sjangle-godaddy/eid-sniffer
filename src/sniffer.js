@@ -47,11 +47,14 @@
   // Live config; updated by the CONFIG_EVENT listener. Defaults track both
   // endpoints and log to the console until the bridge delivers real config.
   // Console and toast are independent — either, both, or neither may be on.
+  const POPUP_TIMEOUTS = [3, 6, 8, 10, 15, 20, 30];
+
   const config = {
     trackCollect: false,
     trackWeb: true,
     showConsole: true,
     showToast: true,
+    popupTimeout: 6, // seconds
     copyMode: "eid", // "eid" | "eidProps"
     theme: "glass", // "glass" | "dracula"
   };
@@ -135,7 +138,6 @@
   /* ------ toast UI (isolated in a shadow root so page CSS can't touch it) - */
 
   const TOAST_MAX = 6;
-  const TOAST_TTL = 6000;
   const TOAST_GLASS_OPACITY = 0.06;
 
   const toast = {
@@ -304,7 +306,7 @@
       if (dismissTimer) clearTimeout(dismissTimer);
       el.remove();
     };
-    dismissTimer = setTimeout(dismiss, TOAST_TTL);
+    dismissTimer = setTimeout(dismiss, config.popupTimeout * 1000);
 
     el.addEventListener("click", (ev) => {
       ev.stopPropagation();
@@ -450,6 +452,7 @@
     if (typeof next.trackWeb === "boolean") config.trackWeb = next.trackWeb;
     if (typeof next.showConsole === "boolean") config.showConsole = next.showConsole;
     if (typeof next.showToast === "boolean") config.showToast = next.showToast;
+    if (POPUP_TIMEOUTS.includes(next.popupTimeout)) config.popupTimeout = next.popupTimeout;
     if (next.copyMode === "eid" || next.copyMode === "eidProps") config.copyMode = next.copyMode;
     if (next.theme === "glass" || next.theme === "dracula") config.theme = next.theme;
     if (toast.stack) toast.stack.className = config.theme === "glass" ? "stack glass" : "stack";

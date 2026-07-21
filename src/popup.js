@@ -2,12 +2,15 @@
  * Popup controls. Reads/writes the persisted config; the background worker and
  * the bridge react to storage changes, so the popup only needs to store state.
  */
+const POPUP_TIMEOUTS = [3, 6, 8, 10, 15, 20, 30];
+
 const DEFAULTS = {
   active: false,
   trackCollect: false,
   trackWeb: true,
   showConsole: true,
   showToast: true,
+  popupTimeout: 6,
   copyMode: "eid",
   theme: "glass",
 };
@@ -18,6 +21,7 @@ const els = {
   trackWeb: document.getElementById("trackWeb"),
   styleConsole: document.getElementById("styleConsole"),
   styleToast: document.getElementById("styleToast"),
+  popupTimeout: document.getElementById("popupTimeout"),
   copyMode: document.getElementById("copyMode"),
   theme: document.getElementById("theme"),
   status: document.getElementById("status"),
@@ -30,6 +34,9 @@ function render(state) {
   els.trackWeb.checked = state.trackWeb;
   els.styleConsole.checked = state.showConsole;
   els.styleToast.checked = state.showToast;
+  els.popupTimeout.value = String(
+    POPUP_TIMEOUTS.includes(state.popupTimeout) ? state.popupTimeout : DEFAULTS.popupTimeout
+  );
   els.copyMode.value = state.copyMode === "eid" ? "eid" : "eidProps";
   els.copyMode.disabled = !state.showToast;
   els.theme.value = state.theme === "dracula" ? "dracula" : "glass";
@@ -62,6 +69,9 @@ els.styleToast.addEventListener("change", () => {
   save({ showToast: els.styleToast.checked });
   els.copyMode.disabled = !els.styleToast.checked;
 });
+els.popupTimeout.addEventListener("change", () =>
+  save({ popupTimeout: Number(els.popupTimeout.value) })
+);
 els.copyMode.addEventListener("change", () => save({ copyMode: els.copyMode.value }));
 els.theme.addEventListener("change", () => {
   save({ theme: els.theme.value });

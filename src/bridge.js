@@ -10,12 +10,14 @@
 (() => {
   const CONFIG_EVENT = "__eidSnifferConfig";
   const READY_EVENT = "__eidSnifferReady";
+  const POPUP_TIMEOUTS = [3, 6, 8, 10, 15, 20, 30];
 
   const DEFAULTS = {
     trackCollect: false,
     trackWeb: true,
     showConsole: true,
     showToast: true,
+    popupTimeout: 6,
     copyMode: "eid",
     theme: "glass",
   };
@@ -27,6 +29,9 @@
     trackWeb: bool(stored?.trackWeb, DEFAULTS.trackWeb),
     showConsole: bool(stored?.showConsole, DEFAULTS.showConsole),
     showToast: bool(stored?.showToast, DEFAULTS.showToast),
+    popupTimeout: POPUP_TIMEOUTS.includes(stored?.popupTimeout)
+      ? stored.popupTimeout
+      : DEFAULTS.popupTimeout,
     copyMode: stored?.copyMode === "eidProps" ? "eidProps" : DEFAULTS.copyMode,
     theme: stored?.theme === "dracula" || stored?.theme === "glass" ? stored.theme : DEFAULTS.theme,
   });
@@ -41,9 +46,12 @@
 
   const pushCurrent = () => {
     try {
-      chrome.storage.local.get(["trackCollect", "trackWeb", "showConsole", "showToast", "copyMode", "theme"], (stored) => {
-        dispatch(pickConfig(stored));
-      });
+      chrome.storage.local.get(
+        ["trackCollect", "trackWeb", "showConsole", "showToast", "popupTimeout", "copyMode", "theme"],
+        (stored) => {
+          dispatch(pickConfig(stored));
+        }
+      );
     } catch (_) {
       dispatch(DEFAULTS);
     }
@@ -66,6 +74,7 @@
         changes.trackWeb ||
         changes.showConsole ||
         changes.showToast ||
+        changes.popupTimeout ||
         changes.copyMode ||
         changes.theme
       ) {
