@@ -43,10 +43,31 @@ body {
   letter-spacing: 0.02em;
 }
 
+.title {
+  flex: 1;
+  min-width: 0;
+}
+
 .title h1 {
   margin: 0;
   font-size: 14px;
   font-weight: 700;
+}
+
+.github {
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+  margin-left: auto;
+  color: var(--muted);
+  border-radius: 6px;
+  padding: 4px;
+  line-height: 0;
+  transition: color 0.15s;
+}
+
+.github:hover {
+  color: var(--text);
 }
 
 .status {
