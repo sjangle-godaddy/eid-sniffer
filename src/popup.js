@@ -24,9 +24,14 @@ const els = {
   popupTimeout: document.getElementById("popupTimeout"),
   copyMode: document.getElementById("copyMode"),
   theme: document.getElementById("theme"),
-  status: document.getElementById("status"),
+  activateLabel: document.getElementById("activateLabel"),
   openOptions: document.getElementById("openOptions"),
 };
+
+function setActiveLabel(on) {
+  els.activateLabel.classList.toggle("activate-label--on", on);
+  els.activateLabel.classList.toggle("activate-label--off", !on);
+}
 
 function render(state) {
   els.active.checked = state.active;
@@ -41,10 +46,7 @@ function render(state) {
   els.copyMode.disabled = !state.showToast;
   els.theme.value = state.theme === "dracula" ? "dracula" : "glass";
   document.body.classList.toggle("theme-glass", state.theme !== "dracula");
-
-  els.status.textContent = state.active ? "Active" : "Inactive";
-  els.status.classList.toggle("status--on", state.active);
-  els.status.classList.toggle("status--off", !state.active);
+  setActiveLabel(state.active);
 }
 
 function save(patch) {
@@ -57,9 +59,7 @@ chrome.storage.local.get(DEFAULTS, (stored) => {
 
 els.active.addEventListener("change", () => {
   save({ active: els.active.checked });
-  els.status.textContent = els.active.checked ? "Active" : "Inactive";
-  els.status.classList.toggle("status--on", els.active.checked);
-  els.status.classList.toggle("status--off", !els.active.checked);
+  setActiveLabel(els.active.checked);
 });
 
 els.trackCollect.addEventListener("change", () => save({ trackCollect: els.trackCollect.checked }));

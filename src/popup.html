@@ -11,7 +11,6 @@
       <span class="logo">EID</span>
       <div class="title">
         <h1>EID Sniffer</h1>
-        <p id="status" class="status status--off">Inactive</p>
       </div>
       <a
         class="github"
@@ -30,16 +29,15 @@
       </a>
     </header>
 
-    <section class="row row--main">
-      <label class="switch">
+    <label class="row row--main">
+      <span class="switch">
         <input type="checkbox" id="active" />
         <span class="slider"></span>
-      </label>
-      <div class="row-label">
-        <strong>Activate</strong>
-        <small>Auto-start on whitelisted domains</small>
-      </div>
-    </section>
+      </span>
+      <span class="row-label">
+        <strong id="activateLabel" class="activate-label activate-label--off">Activate</strong>
+      </span>
+    </label>
 
     <section class="group">
       <h2 class="group-title">Track</h2>
